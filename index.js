@@ -1,20 +1,13 @@
 const connectDB = require("./config/database");
 const express = require("express");
-const {
-  getallproducts,
-  getbyid,
-  addproduct,
-  deleteproduct,
-} = require("./controllers/productController");
+const productRouter = require("./routers/productRouters");
 
 connectDB();
 
 const server = express();
 
 server.use(express.json());
-server.get("/", getallproducts);
-server.get("/:id", getbyid);
-server.post("/", addproduct);
-server.delete("/:id", deleteproduct);
+
+server.use("/product", productRouter);
 
 server.listen(8080);

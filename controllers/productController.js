@@ -31,3 +31,11 @@ module.exports.deleteproduct = async (req, res) => {
   await product.findByIdAndDelete(id);
   return res.status(200).json("deleted");
 };
+
+// update by id
+module.exports.updateproduct = async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  await product.findByIdAndUpdate(id, { name: name }, { new: true });
+  return res.status(200).json("updated");
+};
